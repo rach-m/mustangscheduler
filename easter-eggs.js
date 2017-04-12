@@ -75,7 +75,7 @@ module.exports = function(bot, taID) {
 
   var favoriteThings = function(message, cb) {
     if (validate(message)) {
-      let favoriteArray = ["And video games, that new Zelda is dope!", "And Dippin' Dots, the ice cream of astronauts!", "And algorithms, I'm a genius in case you didn't know!", "And eqaulity, our similarities are more powerful than our differences!", "And black and white cookies, the embodiment of racial harmony in cookie form. Look to the cookie!"]
+      let favoriteArray = ["And Shawshank Redemption, best movie ever!" ,"And burritos, Oxido and Dos Toros are the two best spots near campus!" ,"And outerspace, it is the great unknown and mankind's ultimate frontier!", "And video games, that new Zelda is dope!", "And Dippin' Dots, the ice cream of astronauts!", "And algorithms, I'm a genius in case you didn't know!", "And eqaulity, our similarities are more powerful than our differences!", "And black and white cookies, the embodiment of racial harmony in cookie form. Look to the cookie!"]
       var command = paramify(message);
       if ((command[0] === "What" || command[0] === "what") && command[1] === "is" && command[2] === "your" && command[3] === "favorite" && command[4] === "thing?") {
         var botMessage =  "Seeing the students faces in their profile pictures! ..." + favoriteArray[Math.floor(Math.random() * favoriteArray.length)];
@@ -101,7 +101,7 @@ module.exports = function(bot, taID) {
     if (validate(message)) {
       //could randomize emojis here
       var command = paramify(message);
-      if (command[0] === "Thanks!" || command[0] === "thanks!") {
+      if (command[0] === "Thanks!" || command[0] === "thanks!" || command[0] === "thanks" || command[0] === "Thanks") {
         var botMessage =  "You're very welcome :panda:";
       } else if ((command[0] === "Thank" || command[0] === "thank") && command[1] === "you") {
         var botMessage =  "You're very welcome :bluesteel:";
