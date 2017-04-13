@@ -103,7 +103,7 @@ module.exports = function(bot, taID) {
       var command = paramify(message);
       if (command[0] === "Thanks!" || command[0] === "thanks!" || command[0] === "thanks" || command[0] === "Thanks") {
         var botMessage =  "You're very welcome :panda:";
-      } else if ((command[0] === "Thank" || command[0] === "thank") && command[1] === "you") {
+      } else if ((command[0] === "Thank" || command[0] === "thank") && (command[1] === "you" || command[1] === "you!")) {
         var botMessage =  "You're very welcome :bluesteel:";
       }
       bot.sendMessage(message.channel, botMessage);
