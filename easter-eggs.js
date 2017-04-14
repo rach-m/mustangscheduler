@@ -99,12 +99,13 @@ module.exports = function(bot, taID) {
 
   var thanks = function(message, cb) {
     if (validate(message)) {
-      //could randomize emojis here
+      let emojis = ["bluesteel", "panda", "banana-dance", "turkey-dance", "success", "bobafett", "fieri_parrot", "lucy", "minion", "bender", "nemo", "powerup", "pug", "psy", "pundog", "woodstock", "yoga"];
       var command = paramify(message);
       if (command[0] === "Thanks!" || command[0] === "thanks!" || command[0] === "thanks" || command[0] === "Thanks") {
-        var botMessage =  "You're very welcome :panda:";
-      } else if ((command[0] === "Thank" || command[0] === "thank") && (command[1] === "you" || command[1] === "you!")) {
-        var botMessage =  "You're very welcome :bluesteel:";
+        var botMessage =  "You're very welcome :" + emojis[Math.floor(Math.random() * emojis.length)] + ":";
+      };
+      if ((command[0] === "Thank" || command[0] === "thank") && (command[1] === "you" || command[1] === "you!")) {
+        var botMessage =  "You're very welcome :" + emojis[Math.floor(Math.random() * emojis.length)] + ":";
       }
       bot.sendMessage(message.channel, botMessage);
     }
