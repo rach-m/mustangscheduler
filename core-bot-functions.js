@@ -36,7 +36,7 @@ module.exports = function(bot, taIDs) {
           nextMessage       = message.text.indexOf("next") > -1 && taIDs.includes(message.user),
           helpMessage       = message.text.indexOf("help") > -1,
           clearQueueMessage = message.text.indexOf("clear queue") > -1 && taIDs.includes(message.user),
-          easterEggs        = message.text.indexOf("easter eggs") > -1,
+          easterEggs        = message.text.indexOf("easter eggs" || "Easter eggs") > -1,
           goodnight         = message.text.indexOf("goodnight") > -1;
 
       if (statusMessage) {
