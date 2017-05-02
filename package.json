@@ -15,6 +15,7 @@
     "express": "^4.13.3",
     "https": "^1.0.0",
     "node-slackbot": "0.0.6",
+    "nodemon": "^1.11.0",
     "querystring": "^0.2.0",
     "request": "^2.60.0",
     "ws": "^0.7.2",

@@ -117,14 +117,14 @@ module.exports = function(bot, taID) {
       var command = paramify(message);
       if( (command[0] === 'how' || command[0] === 'How') && command[1] === 'awesome' && command[2] === 'is' && (command[3] === 'Dominic?' || command[3] === 'dominic?' || (command[3] === 'matt?') || command[3] === 'Matt?'))    {
 				var botMessage =  "His awesomeness is over 9,000!"
-      } 
+      }
       bot.sendMessage(message.channel, botMessage);
     }
     cb(null, 'howAwesome');
   }
 
 	var wakeUp = function(message, cb) {
-		if (validate(message)) {	
+		if (validate(message)) {
 			var command = paramify(message);
 			if ( (command[0] === "Grace" || command[0] === 'grace') && command[1] === "are" && command[2] === "you" && command[3] === "up?") {
 				var botMessage =  "ZZZZZzzz.....Yes I'm up!"
@@ -137,7 +137,7 @@ module.exports = function(bot, taID) {
 	var theDom = function(message, cb) {
 		if (validate(message)) {
 			var command = paramify(message);
-			console.log('The Dom!', command)						
+			console.log('The Dom!', command)
 			if ( (command[0] === 'Tell' || command[0] === 'tell') && command[1] === 'me' && command[2] === 'about' && command[3] === 'the' && (command[4] === 'DOM.' || command[4] === 'dom.' ) ) {
 				var botMessage =  'The Dominic Object model is an important concept in web development!'
 			}
@@ -148,12 +148,12 @@ module.exports = function(bot, taID) {
 
 
 	return {
-		kyleSmile: kyleSmile,
-		trainStatus: trainStatus,
-    floorMessage: floorMessage,
-    favoriteThings: favoriteThings,
-    doYouLike: doYouLike,
-    thanks: thanks,
+		kyleSmile,
+		trainStatus,
+    floorMessage,
+    favoriteThings,
+    doYouLike,
+    thanks,
 		howAwesome,
 		wakeUp,
 		theDom
