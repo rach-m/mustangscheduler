@@ -62,13 +62,15 @@ module.exports = function(bot, taID) {
 	};
 
   var floorMessage = function(message, cb) {
-    if (validate(message)) {
+    if (validate(message) && taID.includes(message.user)) {
       var command = paramify(message);
-      if ((command[0] === "I" || command[0] === "i") && command[1] === "am" && command[2] === "on" && command[3] === "the" && command[5] === "floor") {
-        var floorNumber = command[4];
-        var botMessage =  "The TAs are on the " + floorNumber + " floor today";
+      if ((command[0] === "I" || command[0] === "i") && command[1] === "am" && (command[2] === "here" || command[2] === "here!")) {
+        bot.api("users.info", {user: message.user}, function(data) {
+          var currentTA = data.user;
+          var botMessage =  currentTA.profile.real_name + " is in the SRC, located at the back of the 4th floor. Need help? Queue up! (after you Google your question first, of course) :the-more-you-know:";
+          bot.sendMessage(message.channel, botMessage);
+        })
       }
-      bot.sendMessage(message.channel, botMessage);
     }
     cb(null, 'floorMessage');
   }
