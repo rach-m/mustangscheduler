@@ -146,6 +146,30 @@ module.exports = function(bot, taID) {
 		cb(null, 'theDom');
 	}
 
+	const virtualDom = (message, cb) => {
+		if (validate(message)) {
+			var command = paramify(message);
+			console.log('The Virtual Dom!', command)						
+			if ( (command[0] === 'Tell' || command[0] === 'tell') && command[1] === 'me' && command[2] === 'about' && command[3] === 'the' && command[4] === 'virtual' && (command[5] === 'DOM.' || command[5] === 'dom.' ) ) {
+				var botMessage =  'The Virtual Dominic Object model is an important concept in React!'
+			}
+			bot.sendMessage(message.channel, botMessage);
+		}
+		cb(null, 'virtualDom');
+	}
+
+	const heart = (message, cb) => {
+			if (validate(message)) {
+				var command = paramify(message);
+				console.log('heart!', command)						
+			if (command[0] === 'heart	' ) {
+				var botMessage =  ':heart:';
+			}
+			bot.sendMessage(message.channel, botMessage);
+		}
+		cb(null, 'heart');
+	}
+
 
 	return {
 		kyleSmile: kyleSmile,
@@ -156,7 +180,9 @@ module.exports = function(bot, taID) {
     thanks: thanks,
 		howAwesome,
 		wakeUp,
-		theDom
+		theDom,
+		virtualDom,
+		heart
 	};
 
 }; // module.exports
