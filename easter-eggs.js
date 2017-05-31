@@ -117,7 +117,7 @@ module.exports = function(bot, taID) {
 	 var howAwesome = function(message, cb) {
     if (validate(message)) {
       var command = paramify(message);
-      if( (command[0] === 'how' || command[0] === 'How') && command[1] === 'awesome' && command[2] === 'is' && (command[3] === 'Dominic?' || command[3] === 'dominic?' || (command[3] === 'matt?') || command[3] === 'Matt?'))    {
+      if( (command[0] === 'how' || command[0] === 'How') && command[1] === 'awesome' && command[2] === 'is' && ((command[3] === 'Dominic?' || command[3] === 'dominic?') || (command[3] === 'matt?' || command[3] === 'Matt?') || (command[3] === 'Dan?' || command[3] === 'dan?') || (command[3] === 'taka?' || command[3] === 'Taka?')) )    {
 				var botMessage =  "His awesomeness is over 9,000!"
       }
       bot.sendMessage(message.channel, botMessage);
@@ -140,7 +140,7 @@ module.exports = function(bot, taID) {
 		if (validate(message)) {
 			var command = paramify(message);
 			if ( (command[0] === 'Tell' || command[0] === 'tell') && command[1] === 'me' && command[2] === 'about' && command[3] === 'the' && (command[4] === 'DOM.' || command[4] === 'dom.' ) ) {
-				var botMessage =  'The Dominic Object model is an important concept in web development!'
+				var botMessage =  'The Dominic Object Model is an important concept in web development!'
 			}
 			bot.sendMessage(message.channel, botMessage);
 		}
@@ -150,9 +150,9 @@ module.exports = function(bot, taID) {
 	const virtualDom = (message, cb) => {
 		if (validate(message)) {
 			var command = paramify(message);
-			console.log('The Virtual Dom!', command)						
+			console.log('The Virtual Dom!', command)
 			if ( (command[0] === 'Tell' || command[0] === 'tell') && command[1] === 'me' && command[2] === 'about' && command[3] === 'the' && command[4] === 'virtual' && (command[5] === 'DOM.' || command[5] === 'dom.' ) ) {
-				var botMessage =  'The Virtual Dominic Object model is an important concept in React!'
+				var botMessage =  'The Virtual Dominic Object Model is an important concept in React!'
 			}
 			bot.sendMessage(message.channel, botMessage);
 		}
@@ -162,8 +162,8 @@ module.exports = function(bot, taID) {
 	const heart = (message, cb) => {
 			if (validate(message)) {
 				var command = paramify(message);
-				console.log('heart!', command)						
-			if (command[0] === 'heart	' ) {
+				console.log('heart!', command)
+			if (command[0] === 'heart' ) {
 				var botMessage =  ':heart:';
 			}
 			bot.sendMessage(message.channel, botMessage);
@@ -184,7 +184,6 @@ module.exports = function(bot, taID) {
 		theDom,
 		virtualDom,
 		heart
-
 	};
 
 }; // module.exports
