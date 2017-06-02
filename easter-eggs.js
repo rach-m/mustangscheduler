@@ -25,15 +25,22 @@ module.exports = function(bot, taID) {
 		return command;
 	}
 
-	var kyleSmile = function(message, cb) {
-		if (validate(message) && message.text.indexOf(':kylesmile:') > -1) {
-			request("http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en", function(err, response, body) {
-				var text = body.replace(/\\'/g, "'");
-				var quote = JSON.parse(text).quoteText;
-				bot.sendMessage(message.channel, ":kylesmile: :kylesmile: As I always like to say: " + quote + " :kylesmile: :kylesmile:");
-			});
+	var quoteMachine = function(message, cb) {
+		if (validate(message) && message.text.indexOf(':movie_camera:') > -1) {
+      const options = {
+        uri: 'https://andruxnet-random-famous-quotes.p.mashape.com/cat=',
+        headers: {
+          'X-Mashape-Key': 'OivH71yd3tmshl9YKzFH7BTzBVRQp1RaKLajsnafgL2aPsfP9V',
+          Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        json: true
+      };
+			request(options, function(err, response, body) {
+        bot.sendMessage(message.channel, '"' + body.quote + '" - ' + body.author);
+      })
 		}
-		cb(null, 'kyleSmile');
+		cb(null, 'quoteMachine');
 	};
 
 	var trainStatus = function(message, cb) {
@@ -117,7 +124,7 @@ module.exports = function(bot, taID) {
 	 var howAwesome = function(message, cb) {
     if (validate(message)) {
       var command = paramify(message);
-      if( (command[0] === 'how' || command[0] === 'How') && command[1] === 'awesome' && command[2] === 'is' && ((command[3] === 'Dominic?' || command[3] === 'dominic?') || (command[3] === 'matt?' || command[3] === 'Matt?') || (command[3] === 'Dan?' || command[3] === 'dan?') || (command[3] === 'taka?' || command[3] === 'Taka?')) )    {
+      if( (command[0] === 'how' || command[0] === 'How') && command[1] === 'awesome' && command[2] === 'is' && ((command[3] === 'Dominic?' || command[3] === 'dominic?') || (command[3] === 'matt?' || command[3] === 'Matt?') || (command[3] === 'Jason?' || command[3] === 'jason?') || (command[3] === 'taka?' || command[3] === 'Taka?')) )    {
 				var botMessage =  "His awesomeness is over 9,000!"
       }
       bot.sendMessage(message.channel, botMessage);
@@ -129,7 +136,7 @@ module.exports = function(bot, taID) {
 		if (validate(message)) {
 			var command = paramify(message);
 			if ( (command[0] === "Grace" || command[0] === 'grace') && command[1] === "are" && command[2] === "you" && command[3] === "up?") {
-				var botMessage =  "ZZZZZzzz.....Yes I'm up!"
+				var botMessage =  "Yea, yea... I'm up. What do you need?"
 			}
 			bot.sendMessage(message.channel, botMessage);
 		}
@@ -173,12 +180,12 @@ module.exports = function(bot, taID) {
 
 
 	return {
-		kyleSmile: kyleSmile,
-		trainStatus: trainStatus,
-    floorMessage: floorMessage,
-    favoriteThings: favoriteThings,
-    doYouLike: doYouLike,
-    thanks: thanks,
+		quoteMachine,
+		trainStatus,
+    floorMessage,
+    favoriteThings,
+    doYouLike,
+    thanks,
 		howAwesome,
 		wakeUp,
 		theDom,
