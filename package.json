@@ -1,14 +1,14 @@
 {
-  "name": "dianabot",
-  "version": "0.0.1",
-  "description": "",
+  "name": "gracehopper",
+  "version": "0.1.1",
+  "description": "queue bot made for General Assembly TA's linked with Slack",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
-  "author": "Max Peterson",
+  "author": "Max Peterson, Matt Kersner, Dominiq Farquadson, Dan Pease, Jason Andrada, Jonathan Ahrens",
   "license": "ISC",
   "dependencies": {
     "async": "^1.4.2",
