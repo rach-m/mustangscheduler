@@ -1,32 +1,48 @@
 var fs = require('fs');
 
 var queue;
+var loggedTAs;
 
+// backs up the queue as a JSON object inside a local db.json file
 function backup(queueArray) {
-  fs.writeFile('./db.json', JSON.stringify({queue: queueArray}));
+  // write the queue array to file
+  fs.writeFile('./db.json', JSON.stringify({queue: queueArray}), (err) => {
+    if(err) console.log('queue backup unsuccessful');
+  });
 }
 
+function backckupTAs(taArray) {
+  // write the TA array to file
+  fs.writeFile('./ta.json', JSON.stringify({loggedTAs: taArray}), (err) => {
+    if(err) console.log('loggedTAs backup unsuccessful');
+  });
+}
+
+// try and pick up the queue form db.json before declaring an empty queue
 try {
   queue = JSON.parse(fs.readFileSync('./db.json', 'utf8')).queue;
+  loggedTAs = JSON.parse(fs.readFileSync('./ta.json', 'utf8')).queue;
 } catch(e) {
   queue = [];
+  loggedTAs = [];
   backup(queue);
+  backckupTAs(loggedTAs);
 }
 
+// function that returns only names from the current queue
 var prettyQueue = function() {
-  console.log("prettyQueue firing:", queue)
   var queueArray = queue.map(function(user) {
     return user.profile.real_name;
   });
   return "Current queue is now: " + (queueArray.length ? queueArray.join(", ") : "empty");
 };
+
+// this is the module being exported to app.js
 module.exports = function(bot, taIDs) {
 
   var gracehopper = function(message, cb) {
     // the if/else if statements are for commands that don't rely
     // on the wording as much
-
-    //console.log(message)
 
     if (message.type === "message" && message.text !== undefined && message.text.indexOf(bot.mention) > -1) {
       // State Message checks
@@ -39,22 +55,25 @@ module.exports = function(bot, taIDs) {
           easterEggs        = message.text.indexOf("easter eggs" || "Easter eggs") > -1,
           goodnight         = message.text.indexOf("goodnight") > -1;
 
+      // --> `gracehopper status`
       if (statusMessage) {
         bot.sendMessage(message.channel, prettyQueue());
 
+      // --> `grachopper queue me`
       } else if (queueMeMessage) {
         // adding a user to the queue
         if (queue.filter(function(e) {return e.id === message.user}).length === 0) {
           bot.api("users.info", {user: message.user}, function(data) {
-            console.log("queueMeMessage firing: ", data.user)
             queue.push(data.user);
             bot.sendMessage(message.channel, prettyQueue());
+            // using fs to write a backup of queue on file
             backup(queue);
           });
         } else {
           bot.sendMessage(message.channel, "Already in queue. " + prettyQueue());
         }
 
+      // --> `gracehopper remove me`
       } else if (removeMeMessage) {
         // removing a user
         var userToRemove = queue.filter(function(user) {return user.id === message.user});
@@ -64,6 +83,7 @@ module.exports = function(bot, taIDs) {
           backup(queue);
         }
 
+      // --> `gracehopper next`
       } else if (nextMessage) {
         // next student
         var currentStudent = queue.shift();
@@ -77,6 +97,9 @@ module.exports = function(bot, taIDs) {
             bot.sendMessage(message.channel, "Up now with " + currentTA.profile.real_name + ": <@" + currentStudent.id + "> -- " + prettyQueue());
             backup(queue);
           });
+        }
+        else {
+          // send message saying no one in queue
         }
 
       } else if (easterEggs) {
