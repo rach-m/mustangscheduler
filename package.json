@@ -8,21 +8,25 @@
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teikmeout/gracehopper.git"
+  },
   "author": "Max Peterson, Matt Kersner, Dominiq Farquadson, Dan Pease, Jason Andrada, Jonathan Ahrens",
   "license": "ISC",
   "dependencies": {
-    "async": "^1.4.2",
+    "async": "^2.5.0",
     "dotenv": "^4.0.0",
-    "express": "^4.13.3",
+    "express": "^4.15.3",
     "https": "^1.0.0",
     "node-slackbot": "0.0.6",
     "nodemon": "^1.11.0",
     "querystring": "^0.2.0",
-    "request": "^2.60.0",
-    "ws": "^0.7.2",
-    "xml2js": "^0.4.12"
+    "request": "^2.81.0",
+    "ws": "^3.0.0",
+    "xml2js": "^0.4.17"
   },
   "engines": {
-    "node": "7.7.3"
+    "node": "8.0.0"
   }
 }
