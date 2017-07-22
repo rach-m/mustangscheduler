@@ -68,7 +68,9 @@ module.exports = function(bot, taID) {
 		cb(null, 'trainStatus');
 	};
 
+  // --> `gracehopper I am here` (RESTRICTED TO TA'S)
   var floorMessage = function(message, cb) {
+    // console.log("inside floor message TAId", taID);
     if (validate(message) && taID.includes(message.user)) {
       var command = paramify(message);
       if ((command[0] === "I" || command[0] === "i") && command[1] === "am" && (command[2] === "here" || command[2] === "here!")) {

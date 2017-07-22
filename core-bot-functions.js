@@ -54,6 +54,7 @@ module.exports = function(bot, taIDs) {
           clearQueueMessage = message.text.indexOf("clear queue") > -1 && taIDs.includes(message.user),
           easterEggs        = message.text.indexOf("easter eggs" || "Easter eggs") > -1,
           goodnight         = message.text.indexOf("goodnight") > -1;
+          // iAmHere           = message.text.indexOf("i am here" || "I am here") > -1;
 
       // --> `gracehopper status`
       if (statusMessage) {
@@ -97,23 +98,39 @@ module.exports = function(bot, taIDs) {
             bot.sendMessage(message.channel, "Up now with " + currentTA.profile.real_name + ": <@" + currentStudent.id + "> -- " + prettyQueue());
             backup(queue);
           });
-        }
-        else {
+        } else {
           // send message saying no one in queue
+          bot.sendMessage(message.channel, "No one in the queue :rice_ball:");
         }
 
+      // --> `gracehopper eastereggs`
       } else if (easterEggs) {
         bot.sendMessage(message.channel, "Tag me and try these commands: `Do you like me?`, `What is your favorite thing?`, `is the (train line) train fucked?`, `Tell me about the Dom.`, `:movie_camera:`, `How awesome is (insert name of TA here)`, `heart`, `Grace are you up?`. And if you dig what I'm saying, just say `Thanks!` :smile:")
+
+      // --> `gracehopper goodnight`
       } else if (goodnight) {
         bot.sendMessage(message.channel, "Have a goodnight!")
+
+      // --> `gracehopper help`
       } else if (helpMessage) {
         // help message
         bot.sendMessage(message.channel, "All commands work only when you specifically mention me. Type `queue me` or `q me` to queue yourself and `status` to check current queue. Type `remove me` to remove yourself.")
 
+      // --> `gracehopper clear queue` (RESTRICTED TO TA'S)
       } else if (clearQueueMessage) {
-        queue = [];
-        bot.sendMessage(message.channel, "Queue cleared");
-        backup(queue);
+        // add condition that only allows TA's to CLEAR queue
+        bot.api("users.info", {user: message.user}, function(data) {
+          let currentTA = data.user;
+
+          // check if the emmiter is actually allowed to do this clear queue
+          if(taIDs.indexOf(`${currentTA.id}`) >= 0) {
+            queue = [];
+            bot.sendMessage(message.channel, `Queue cleared, ${currentTA.name} have a :tropical_drink:`);
+            backup(queue);
+          } else {
+            bot.sendMessage(message.channel, "You are not authorized to do that");
+          }
+        });
       }
 
     } else if(message.type === "hello") {
