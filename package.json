@@ -21,6 +21,7 @@
     "https": "^1.0.0",
     "node-slackbot": "0.0.6",
     "nodemon": "^1.11.0",
+    "npm": "^5.7.1",
     "querystring": "^0.2.0",
     "request": "^2.81.0",
     "ws": "^3.0.0",
