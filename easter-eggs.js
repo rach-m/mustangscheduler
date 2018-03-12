@@ -14,7 +14,7 @@ module.exports = function(bot, taID) {
   // `validate` is simply a helper to make sure the message is meant for the bot
   function validate(message) {
     return message.type === "message" && message.text !== undefined && message.text.indexOf(bot.mention) > -1;
-  }
+  };
 
   // paramify is useful if wording of the message is important
   // returns the message in an array of words without the mention at the beginning
@@ -23,7 +23,7 @@ module.exports = function(bot, taID) {
     var command = commandString.split(" ");
     if (command[0] === "") {command.shift();}
     return command;
-  }
+  };
 
   var quoteMachine = function(message, cb) {
     if (validate(message) && message.text.indexOf(':movie_camera:') > -1) {
@@ -82,7 +82,7 @@ module.exports = function(bot, taID) {
       }
     }
     cb(null, 'floorMessage');
-  }
+  };
 
   var existentialCrisis = function(message, cb) {
     if (validate(message) && taID.includes(message.user)) {
@@ -93,7 +93,7 @@ module.exports = function(bot, taID) {
       bot.sendMessage(message.channel, botMessage);
     }
     cb(null, 'existentialCrisis');
-  }
+  };
 
     var peterCrisis = function(message, cb) {
     if (validate(message) && taID.includes(message.user)) {
@@ -104,7 +104,18 @@ module.exports = function(bot, taID) {
       bot.sendMessage(message.channel, botMessage);
     }
     cb(null, 'peterCrisis');
-  }
+  };
+
+    var areyouDone = function(message, cb) {
+    if (validate(message) && taID.includes(message.user)) {
+      var command = paramify(message);
+      if ((command[0] === "Are" || command[0] === "are") && (command[1] === "you" || command[1] === "u") && (command[2] === "done" || command[2] === "done?")) {
+        var botMessage = "I am! Come back and see me tomorrow!"
+      }
+      bot.sendMessage(message.channel, botMessage);
+    }
+    cb(null, 'areyouDone');
+  };
 
   var favoriteThings = function(message, cb) {
     if (validate(message)) {
@@ -116,7 +127,7 @@ module.exports = function(bot, taID) {
       bot.sendMessage(message.channel, botMessage);
     }
     cb(null, 'favoriteThings');
-  }
+  };
 
   var tellMeSomething = function(message, cb) {
     if(validate(message)) {
@@ -177,7 +188,7 @@ module.exports = function(bot, taID) {
       bot.sendMessage(message.channel, botMessage)
     }
     cb(null, 'tellMeSomething');
-  }
+  };
 
   var doYouLike = function(message, cb) {
     if (validate(message)) {
@@ -189,7 +200,7 @@ module.exports = function(bot, taID) {
       bot.sendMessage(message.channel, botMessage);
     }
     cb(null, 'doYouLike');
-  }
+  };
 
   var thanks = function(message, cb) {
     if (validate(message)) {
@@ -204,7 +215,7 @@ module.exports = function(bot, taID) {
       bot.sendMessage(message.channel, botMessage);
     }
     cb(null, 'thanks');
-  }
+  };
 
    var howAwesome = function(message, cb) {
     if (validate(message)) {
@@ -215,7 +226,7 @@ module.exports = function(bot, taID) {
       bot.sendMessage(message.channel, botMessage);
     }
     cb(null, 'howAwesome');
-  }
+  };
 
   var wakeUp = function(message, cb) {
     if (validate(message)) {
@@ -226,7 +237,7 @@ module.exports = function(bot, taID) {
       bot.sendMessage(message.channel, botMessage);
     }
     cb(null, 'wakeUp');
-  }
+  };
 
   var theDom = function(message, cb) {
     if (validate(message)) {
@@ -237,7 +248,7 @@ module.exports = function(bot, taID) {
       bot.sendMessage(message.channel, botMessage);
     }
     cb(null, 'theDom');
-  }
+  };
 
   var waterBoy = function(message, cb) {
     if (validate(message)) {
@@ -269,7 +280,7 @@ module.exports = function(bot, taID) {
         bot.sendMessage(message.channel, botMessage);
     }
     cb(null, 'waterBoy');
-  }
+  };
 
   const virtualDom = (message, cb) => {
     if (validate(message)) {
@@ -281,7 +292,7 @@ module.exports = function(bot, taID) {
       bot.sendMessage(message.channel, botMessage);
     }
     cb(null, 'virtualDom');
-  }
+  };
 
   const heart = (message, cb) => {
       if (validate(message)) {
@@ -293,7 +304,7 @@ module.exports = function(bot, taID) {
       bot.sendMessage(message.channel, botMessage);
     }
     cb(null, 'heart');
-  }
+  };
 
   return {
     quoteMachine,
@@ -301,6 +312,7 @@ module.exports = function(bot, taID) {
     floorMessage,
     existentialCrisis,
     peterCrisis,
+    areyouDone,
     favoriteThings,
     tellMeSomething,
     doYouLike,
