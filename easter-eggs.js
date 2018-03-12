@@ -95,6 +95,17 @@ module.exports = function(bot, taID) {
     cb(null, 'existentialCrisis');
   }
 
+    var peterCrisis = function(message, cb) {
+    if (validate(message) && taID.includes(message.user)) {
+      var command = paramify(message);
+      if ((command[0] === "Is" || command[0] === "is") && (command[1] === "Peter" || command[1] === "peter") && (command[2] === "here" || command[2] === "here?")) {
+        var botMessage = "No, he's too busy grading homework."
+      }
+      bot.sendMessage(message.channel, botMessage);
+    }
+    cb(null, 'peterCrisis');
+  }
+
   var favoriteThings = function(message, cb) {
     if (validate(message)) {
       let favoriteArray = ["And Shawshank Redemption, best movie ever!" ,"And burritos, Oxido and Dos Toros are the two best spots near campus!" ,"And outerspace, it is the great unknown and mankind's ultimate frontier!", "And video games, that new Zelda is dope!", "And Dippin' Dots, the ice cream of astronauts!", "And algorithms, I'm a genius in case you didn't know!", "And eqaulity, our similarities are more powerful than our differences!", "And black and white cookies, the embodiment of racial harmony in cookie form. Look to the cookie!"]
@@ -284,12 +295,12 @@ module.exports = function(bot, taID) {
     cb(null, 'heart');
   }
 
-
   return {
     quoteMachine,
     trainStatus,
     floorMessage,
     existentialCrisis,
+    peterCrisis,
     favoriteThings,
     tellMeSomething,
     doYouLike,
