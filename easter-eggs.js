@@ -190,6 +190,27 @@ module.exports = function(bot, taID) {
     cb(null, 'tellMeSomething');
   };
 
+  var whatDoIKnow = function(message, cb) {
+    if(validate(message)) {
+      let factsArray = [
+        "That I am the best bot that ever existed and that the SRC is the best group of people on the planet!"
+      ];
+      var command = paramify(message);
+      if(
+          (command[0] === "Tell" || command[0] === "tell") &&
+          (command[1] === "me") &&
+          (command[2] === "something") &&
+          (command[3] === "I" || command[3] === "i") &&
+          (command[4] === "do" || command[4] === "Do") &&
+          (command[5] === "know")
+      ) {
+        var botMessage = factsArray[Math.floor(Math.random() * factsArray.length)];
+      }
+      bot.sendMessage(message.channel, botMessage)
+    }
+    cb(null, 'whatDoIKnow');
+  };
+
   var doYouLike = function(message, cb) {
     if (validate(message)) {
       let answers = ["Kinda", "Of course!", "Eh", "Sometimes", "To be honest, not really", "Very much!", "You're the best!", "Oh yea! If you were a pen, you'd be FINE point", "You know it!", "If you were a contract, you'd be all FINE print", "Well, you're ok", "Depends... do YOU like ME?", "Like, more than a friend?", "Marry me!"]
@@ -315,6 +336,7 @@ module.exports = function(bot, taID) {
     areyouDone,
     favoriteThings,
     tellMeSomething,
+    whatDoIKnow,
     doYouLike,
     thanks,
     howAwesome,
