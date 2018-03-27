@@ -17,7 +17,7 @@
   "dependencies": {
     "async": "^2.5.0",
     "dotenv": "^4.0.0",
-    "eslint": "^4.19.0",
+    "eslint": "^4.19.1",
     "express": "^4.15.3",
     "https": "^1.0.0",
     "node-slackbot": "0.0.6",
