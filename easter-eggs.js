@@ -73,7 +73,7 @@ module.exports = function(bot, taID) {
     // console.log("inside floor message TAId", taID);
     if (validate(message) && taID.includes(message.user)) {
       var command = paramify(message);
-      if ((command[0] === "I" || command[0] === "i" || command[0] === "Estoy" || command[0] === "estoy") && (command[1] === "am" || command[1] === "aqui") && (command[2] === "here" || command[2] === "here!" || command[2] === "ahora" || command[2] === "ahora!")) {
+      if ((command[0] === "I" || command[0] === "i" || command[0] === "Estoy" || command[0] === "estoy" || command[0] === "我在这里") && (command[1] === "am" || command[1] === "aqui") && (command[2] === "here" || command[2] === "here!" || command[2] === "ahora" || command[2] === "ahora!")) {
         bot.api("users.info", {user: message.user}, function(data) {
           var currentTA = data.user;
           var botMessage =  currentTA.profile.real_name + " is in the hizzouse, located at the back of the 4th floor. Need help? Queue up! (after you Google your question first, of course) :the-more-you-know:";
