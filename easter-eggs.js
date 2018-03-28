@@ -77,7 +77,7 @@ module.exports = function(bot, taID) {
           (command[0] === "I" || command[0] === "i" || command[0] === "Estoy" || command[0] === "estoy") && (command[1] === "am" || command[1] === "aqui") && (command[2] === "here" || command[2] === "here!" || command[2] === "ahora" || command[2] === "ahora!")
         ||
           (
-            (command[0] === "我在这里") || (command[0] === "איז") && command[1] === "דו"))
+            ((command[0] === "我在这里") || (command[0] === "איז") && command[1] === "דו"))
         )
       {
         bot.api("users.info", {user: message.user}, function(data) {
