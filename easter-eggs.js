@@ -78,12 +78,16 @@ module.exports = function(bot, taID) {
       ||
         (
           (
-            (command[0] === "我在这里") || ((command[0] === "איז") && (command[1] === "דו")) ||
-            ((command[0] === "я") && (command[1] === "здесь"))
+            (command[0] === "我在这里") ||
+            ((command[0] === "איז") && (command[1] === "דו")) ||
+            ((command[0] === "я") && (command[1] === "здесь")) ||
+            ((command[0] === "Je" || command[0] === "je") && (command[1] === "suis") && (command[2] === "la")) ||
+            ((command[0] === "Ergo" || command[0] === "ergo") && (command[1] === "adsum")) ||
+            ((command[0] === "Mi" || command[0] === "mi") && (command[1] === "estas") && (command[2] === "tie") && (command[3] === "ci"))
           )
         )
       )
-      {
+    {
         bot.api("users.info", {user: message.user}, function(data) {
           var currentTA = data.user;
           var botMessage =  currentTA.profile.real_name + " is in the hizzouse, located at the back of the 4th floor. Need help? Queue up! (after you Google your question first, of course) :the-more-you-know:";
