@@ -79,7 +79,7 @@ module.exports = function(bot, taID) {
         (
           (
             (command[0] === "我在这里") ||
-            ((command[0] === "איז") && (command[1] === "דו")) ||
+            ((command[0] === "איך") && (command[1] === "בין") && (command[2] === "דו")) ||
             ((command[0] === "я") && (command[1] === "здесь")) ||
             ((command[0] === "Je" || command[0] === "je") && (command[1] === "suis") && (command[2] === "la")) ||
             ((command[0] === "Ergo" || command[0] === "ergo") && (command[1] === "adsum")) ||
