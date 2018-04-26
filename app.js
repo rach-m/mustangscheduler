@@ -8,7 +8,7 @@ var request = require('request');
 var slackbot = require('./slackbot-new');
 var fs = require('fs');
 
-var botKey = (process.env.PORT||process.env.BOT_KEY);
+var botKey = process.env.BOT_KEY;
 // this botkey is related to @Taka slack existance in Students Channel.
 // reactivate with your own user in case of finding it disabled
 
