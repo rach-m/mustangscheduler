@@ -95,7 +95,7 @@ module.exports = function(bot, taIDs) {
           console.log("current Student: ", currentStudent);
             var currentTA = data.user;
             console.log("currentTA: ", currentTA)
-            bot.sendMessage(message.channel, "Up now with " + currentTA.profile.real_name + ": <@" + currentStudent.id + "> Please leave feedback after your slot! https://docs.google.com/forms/d/e/1FAIpQLSen-gO_8XRuQYCLf9DO-ua5KOHYa8b1wHFcYM9wSObNz2Hekw/viewform?c=0&w=1 -- " + prettyQueue());
+            bot.sendMessage(message.channel, "Up now with " + currentTA.profile.real_name + ": <@" + currentStudent.id + "> Please leave feedback after your slot! https://goo.gl/RMUWUu -- " + prettyQueue());
             backup(queue);
           });
         } else {
